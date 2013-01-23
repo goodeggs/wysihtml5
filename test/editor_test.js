@@ -154,7 +154,7 @@ if (wysihtml5.browser.supported()) {
 
 
   asyncTest("Check events", function() {
-    expect(8);
+    expect(9);
     
     var that = this;
     
@@ -179,7 +179,11 @@ if (wysihtml5.browser.supported()) {
       editor.on("change", function() {
         ok(true, "'change' event correctly fired");
       });
-      
+
+      wysihtml5.dom.observe(this.textareaElement, ['change'], function() {
+        ok(true, "textarea 'change' event correctly fired");
+      });
+
       editor.on("paste", function() {
         ok(true, "'paste' event correctly fired");
       });

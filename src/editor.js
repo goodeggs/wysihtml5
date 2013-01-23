@@ -92,6 +92,13 @@
           this.toolbar = new wysihtml5.toolbar.Toolbar(this, this.config.toolbar);
         }
       });
+
+      this.on("change:composer", function() {
+        var evt = document.createEvent("HTMLEvents");
+        evt.initEvent('change', true, true);
+        evt.__wysihtml5_internal = true
+        this.textareaElement.dispatchEvent(evt);
+      });
       
       try {
         console.log("Heya! This page is using wysihtml5 for rich text editing. Check out https://github.com/xing/wysihtml5");

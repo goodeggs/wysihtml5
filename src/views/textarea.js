@@ -54,6 +54,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
     
     parent.on("beforeload", function() {
       wysihtml5.dom.observe(element, events, function(event) {
+        if (event.__wysihtml5_internal) return;
         var eventName = eventMapping[event.type] || event.type;
         parent.fire(eventName).fire(eventName + ":textarea");
       });
